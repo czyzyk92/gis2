@@ -2,7 +2,7 @@
 
 angular.module('gisApp')
         .controller('olController', function ($scope, SzkolyService) {
-
+    
             $scope.getSzkoly = function () {
                 SzkolyService.getAll(function (result) {
                     $scope.szkoly = result;

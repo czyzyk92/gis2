@@ -22,9 +22,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
         <link rel="stylesheet" href="bower_components/openlayers3/build/ol.css" />
-        
+
         <link rel="stylesheet" href="bower_components/angular-openlayers-directive/css/markers.css" />
-        
+
     </head>
     <body ng-controller="olController">
         <!--        https://github.com/tombatossals/angular-openlayers-directive-->
@@ -51,30 +51,33 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>lon</th>
-                        <th>lat</th>
-                        <th>Tytuł</th>
-                        <th>Opis</th>
+                        <th st-sort="id">ID</th>
+                        <th st-sort="lon">lon</th>
+                        <th st-sort="lat">lat</th>
+                        <th st-sort="tytul">Tytuł</th>
+                        <th st-sort="label.message">Opis</th>
+                    </tr>
+                    <tr>
+                        <th colspan="5"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
                     </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="szkola in szkoly" ng-click="szkola.label.show = !szkola.label.show">
-                    <th>
-                        <p>{{szkola.id}}</p>
-                    </th>
-                    <td>
-                        <p>{{szkola.lon}}</p>
-                    </td>
-                    <td>
-                        <p>{{szkola.lat}}</p>
-                    </td>
-                    <td>
-                        <p>{{szkola.tytul}}</p>
-                    </td>
-                    <td>
-                        <p ng-bind-html="szkola.label.message"</p>
-                    </td>
+                    <tr ng-repeat="szkola in szkoly" ng-click="szkola.label.show = !szkola.label.show">
+                        <th>
+                <p>{{szkola.id}}</p>
+                </th>
+                <td>
+                    <p>{{szkola.lon}}</p>
+                </td>
+                <td>
+                    <p>{{szkola.lat}}</p>
+                </td>
+                <td>
+                    <p>{{szkola.tytul}}</p>
+                </td>
+                <td>
+                    <p ng-bind-html="szkola.label.message"</p>
+                </td>
                 </tr>
                 </tbody>
 
