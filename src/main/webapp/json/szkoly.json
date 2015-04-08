@@ -1,0 +1,15 @@
+{
+    "type": "FeatureCollection",
+    "features": [{
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [18.64542, 54.34766]
+            },
+            "properties": {
+                "externalGraphic": "marker.png",
+                "description": "<a href=#>London Eye<\/a>",
+                "id": 1
+            }
+        }]
+}
