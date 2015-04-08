@@ -1,70 +1,33 @@
-{
-    "type": "FeatureCollection",
-    "features": [{
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [18.64542, 54.34766]
-            },
-            "properties": {
-                "description": "<img src=\"http:\/\/s-trojmiasto.pl\/zdj\/obiekty\/logo\/0\/735.jpg\"\/>\r\n<br>\r\n<a href=\"www.lo8.gda.pl\">Nasza Strona<\/a>",
-                "id": 1,
-                "tytul": "Liceum nr VIII"
-            }
-        }, {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [18.7555254, 54.3479907]
-            },
-            "properties": {
-                "description": "\r\n<img src=\"http:\/\/upload.wikimedia.org\/wikipedia\/commons\/thumb\/5\/50\/LogoIX.jpg\/200px-LogoIX.jpg\" style=\"float: right; width: 50px; height: 50px\"\/><br>\r\n<a href=\"http:\/\/www.24lo.gdansk.pl\/\">Nasza Strona<\/a>",
-                "id": 3,
-                "tytul": "Liceum nr IX W Gdansku"
-            }
-        }, {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [18.55542, 54.44799]
-            },
-            "properties": {
-                "description": "<img src=\"http:\/\/s-trojmiasto.pl\/zdj\/obiekty\/logo\/0\/728.gif\"\/><a href=\"www.ilo.gda.pl\">Nasza strona<\/a>",
-                "id": 4,
-                "tytul": "I Liceum im. Mikolaja Kopernika"
-            }
-        }, {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [18.3955254, 54.54799]
-            },
-            "properties": {
-                "description": "<img src=\"http:\/\/iiilo.websitestyle.53.ibc.pl\/images\/Logo.png\"\/><br>\r\n<a href=\"http:\/\/www.lo3.gdynia.pl\/\">Nasza strona<\/a>",
-                "id": 5,
-                "tytul": "III LO W Gdyni im Marynarki Wojennej"
-            }
-        }, {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [18.54542, 54.41766]
-            },
-            "properties": {
-                "description": "<img src=\"https:\/\/fbcdn-profile-a.akamaihd.net\/hprofile-ak-xaf1\/v\/t1.0-1\/c0.0.160.160\/p160x160\/10671501_389273767889368_6630505383857555135_n.png?oh=56a2b5d1687ee07d98ebafaead8f0c00&oe=5532CB5C&__gda__=1429025567_2ff23d8eb001fe35d6b9ef489bac4a2e\"\/><br>\r\n<a href=\"https:\/\/www.facebook.com\/pages\/Fanpage-XIV-LO-Gda%C5%84sk-Trzymamy-poziom\/389185141231564?fref=photo&sk=photos\">FanPage na FB<\/a>",
-                "id": 6,
-                "tytul": "XIV LO W Gdansku"
-            }
-        }, {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [18.6555254, 54.3979907]
-            },
-            "properties": {
-                "description": "",
-                "id": 7,
-                "tytul": ""
-            }
-        }]
-}
+[
+    {
+        "lon": 18.64542,
+        "lat": 54.34766,
+        "id": 1,
+        "tytul": "Liceum nr VIII",
+        "label": {
+            "message": "<img src=\"http:\/\/s-trojmiasto.pl\/zdj\/obiekty\/logo\/0\/735.jpg\"\/>\r\n<br>\r\n<a href=\"www.lo8.gda.pl\">Nasza Strona<\/a>",
+            "show": false,
+            "showOnMouseOver": true
+        }
+    }, {
+        "lon": 18.7555254,
+        "lat": 54.3479907,
+        "id": 2,
+        "tytul": "Liceum nr IX W Gdansku",
+        "label": {
+            "message": "\r\n<img src=\"http:\/\/upload.wikimedia.org\/wikipedia\/commons\/thumb\/5\/50\/LogoIX.jpg\/200px-LogoIX.jpg\" style=\"float: right; width: 50px; height: 50px\"\/><br>\r\n<a href=\"http:\/\/www.24lo.gdansk.pl\/\">Nasza Strona<\/a>",
+            "show": false,
+            "showOnMouseOver": true
+        }
+    }, {
+        "lon": 18.55542,
+        "lat": 54.44799,
+        "id": 3,
+        "tytul": "I Liceum im. Mikolaja Kopernika",
+        "label": {
+            "message": "<img src=\"http:\/\/s-trojmiasto.pl\/zdj\/obiekty\/logo\/0\/728.gif\"\/><a href=\"www.ilo.gda.pl\">Nasza strona<\/a>",
+            "show": false,
+            "showOnMouseOver": true
+        }
+    }
+]

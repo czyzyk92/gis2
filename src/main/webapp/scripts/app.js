@@ -2,6 +2,6 @@
 
 /* App Module */
 
-var gisApp = angular.module('gisApp', [
-  'openlayers-directive'
+angular.module('gisApp', [
+  'openlayers-directive', 'ngResource', 'ui.router'
 ]);
