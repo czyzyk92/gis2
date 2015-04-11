@@ -7,11 +7,13 @@ package com.mycompany.gis2.repository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import com.mycompany.gis2.domain.Geom;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Wojtek
  */
+@Transactional
 public interface GeomRepository extends JpaRepository<Geom,Long>, JpaSpecificationExecutor<Geom>{
     
 }
