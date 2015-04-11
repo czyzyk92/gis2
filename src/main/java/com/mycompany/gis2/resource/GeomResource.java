@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Transactional
 @RestController
-@RequestMapping("/")
 public class GeomResource {
     
     @Autowired
