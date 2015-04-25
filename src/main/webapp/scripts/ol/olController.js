@@ -20,7 +20,6 @@ angular.module('gisApp')
                         item.label.message = item.description;
                         item.label.show = false;
                         item.label.showOnMouseOver = true;
-                        item.description = {};
                     });
 
                     console.log($scope.szkoly);
@@ -50,13 +49,17 @@ angular.module('gisApp')
                 $('#editModal').modal('show');
                 console.log($scope.selectedSzkola);
             };
-            $scope.save = function (szkola) {
-                SzkolyService.save(szkola, function () {
+            $scope.save = function () {
+                $scope.selectedSzkola.description = $scope.selectedSzkola.label.message;
+                SzkolyService.save($scope.selectedSzkola, function () {
                     toastr.success('Pomyślnie zapisano zmiany!');
                     $('#editModal').modal('hide');
                 }, function () {
                     toastr.error('Wystąpił błąd przy zapisie danych');
                 });
             };
-
+            
+            $scope.delete = function (id) {
+                SzkolyService.delete({id: id});
+            };
         });
