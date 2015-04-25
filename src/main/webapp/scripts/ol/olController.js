@@ -2,6 +2,7 @@
 
 angular.module('gisApp')
         .controller('olController', function ($scope, toastr, SzkolyService) {
+            $scope.selectedSzkola = {};
             $scope.tinymceOptions = {
                 plugins: [
                     "advlist autolink lists link image charmap print preview anchor",
@@ -25,7 +26,8 @@ angular.module('gisApp')
                 center: {
                     lat: 54.34766,
                     lon: 18.64542,
-                    zoom: 10
+                    zoom: 10,
+                    centerUrlHash: true
                 },
                 szkoly: {},
                 defaults: {
@@ -36,6 +38,18 @@ angular.module('gisApp')
                 projection: 'EPSG:900913'
             });
 
+            $scope.$on('openlayers.layers.geojson.singleclick', function (event, feature) {
+                $scope.$apply(function (scope) {
+                    if (feature) {
+                        $scope.mouseClickCountry = feature ? $scope.countries[feature.getId()].name : '';
+                    }
+                });
+            });
+
+            $scope.selectSzkola = function (szkola) {
+                $scope.selectedSzkola = szkola;
+                console.log("Zaznaczona szkola:", $scope.selectedSzkola);
+            }
             $scope.edit = function (szkola) {
                 $scope.selectedSzkola = szkola;
                 $('#editModal').modal('show');
@@ -49,14 +63,20 @@ angular.module('gisApp')
                     toastr.error('Wystąpił błąd przy zapisie danych');
                 });
             };
-            
+
             $scope.delete = function (szkola) {
                 $('#confirmDeleteModal').modal('show');
                 $scope.removeSzkola = szkola;
             };
-            
+
             $scope.confirmDelete = function () {
-                SzkolyService.delete({id: $scope.removeSzkola.id});
-                $('#confirmDeleteModal').modal('hide');
+                SzkolyService.delete({id: $scope.removeSzkola.id}, function () {
+                    toastr.success('Pomyślnie usunięto szkołę!');
+                    $('#confirmDeleteModal').modal('hide');
+                    $scope.getSzkoly();
+                }, function () {
+                    toastr.error('Wystąpił błąd podczas usuwania szkoły');
+                });
+
             };
         });
