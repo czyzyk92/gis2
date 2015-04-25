@@ -14,14 +14,6 @@ angular.module('gisApp')
             $scope.getSzkoly = function () {
                 SzkolyService.getAll(function (result) {
                     $scope.szkoly = result;
-                    // Konwersja do formatu odpowiedniego dla openlayers-directive
-                    angular.forEach($scope.szkoly, function (item) {
-                        item.label = {};
-                        item.label.message = item.description;
-                        item.label.show = false;
-                        item.label.showOnMouseOver = true;
-                    });
-
                     console.log($scope.szkoly);
                 });
             };
@@ -50,7 +42,6 @@ angular.module('gisApp')
                 console.log($scope.selectedSzkola);
             };
             $scope.save = function () {
-                $scope.selectedSzkola.description = $scope.selectedSzkola.label.message;
                 SzkolyService.save($scope.selectedSzkola, function () {
                     toastr.success('Pomyślnie zapisano zmiany!');
                     $('#editModal').modal('hide');
@@ -59,7 +50,13 @@ angular.module('gisApp')
                 });
             };
             
-            $scope.delete = function (id) {
-                SzkolyService.delete({id: id});
+            $scope.delete = function (szkola) {
+                $('#confirmDeleteModal').modal('show');
+                $scope.removeSzkola = szkola;
+            };
+            
+            $scope.confirmDelete = function () {
+                SzkolyService.delete({id: $scope.removeSzkola.id});
+                $('#confirmDeleteModal').modal('hide');
             };
         });
