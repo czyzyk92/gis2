@@ -22,11 +22,11 @@ import javax.persistence.Table;
 @Table(name = "geom")
 public class Geom implements Serializable {
     
-    @Column(name = "x")
-    private double x;
+    @Column(name = "lon")
+    private double lon;
     
-    @Column(name = "y")
-    private double y;
+    @Column(name = "lat")
+    private double lat;
     
     @Column(name = "description")
     private String description;
@@ -34,7 +34,7 @@ public class Geom implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
+    private Long id;
     
     @Column(name = "tytul")
     private String tytul;
@@ -42,32 +42,32 @@ public class Geom implements Serializable {
     public Geom() {
     }
 
-    public Geom(Integer id) {
+    public Geom(Long id) {
         this.id = id;
     }
 
-    public Geom(Integer id, double x, double y, String description, String tytul) {
+    public Geom(Long id, double lon, double lat, String description, String tytul) {
         this.id = id;
-        this.x = x;
-        this.y = y;
+        this.lon = lon;
+        this.lat = lat;
         this.description = description;
         this.tytul = tytul;
     }
 
-    public double getX() {
-        return x;
+    public double getLon() {
+        return lon;
     }
 
-    public void setX(double x) {
-        this.x = x;
+    public void setLon(double lon) {
+        this.lon = lon;
     }
 
-    public double getY() {
-        return y;
+    public double getLat() {
+        return lat;
     }
 
-    public void setY(double y) {
-        this.y = y;
+    public void setLat(double lat) {
+        this.lat = lat;
     }
 
     public String getDescription() {
@@ -78,11 +78,11 @@ public class Geom implements Serializable {
         this.description = description;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
