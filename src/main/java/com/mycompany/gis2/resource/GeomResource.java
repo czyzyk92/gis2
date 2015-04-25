@@ -25,17 +25,6 @@ public class GeomResource {
     @Autowired
     private GeomRepository geomRepository;
     
-    
-    @RequestMapping(value = "/geom/{id}",
-                    method = RequestMethod.GET,
-                    produces = MediaType.APPLICATION_JSON_VALUE)
-    public Geom get(@PathVariable Long id){
-        
-        return geomRepository.findOne(id);
-                
-    }
-    
-    
     @RequestMapping(value = "/geom",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -52,4 +41,12 @@ public class GeomResource {
         geomRepository.save(geom);
     }
     
+    @RequestMapping(value = "/geom/{id}",
+                    method = RequestMethod.DELETE,
+                    produces = MediaType.APPLICATION_JSON_VALUE)
+    public void delete(@PathVariable Long id){
+        Geom geom = geomRepository.findOne(id);
+        geomRepository.delete(geom);
+                
+    }
 }
