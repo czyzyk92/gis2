@@ -49,7 +49,7 @@ angular.module('gisApp')
             $scope.selectSzkola = function (szkola) {
                 $scope.selectedSzkola = szkola;
                 console.log("Zaznaczona szkola:", $scope.selectedSzkola);
-            }
+            };
             $scope.edit = function (szkola) {
                 $scope.selectedSzkola = szkola;
                 $('#editModal').modal('show');
