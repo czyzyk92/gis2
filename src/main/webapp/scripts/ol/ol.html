@@ -5,14 +5,26 @@
         <h2>{{selectedSzkola.tytul}}</h2>
         <p ng-bind-html="selectedSzkola.description"></p>
     </div>
-    <!-- Mapa -->
-    <openlayers ol-center="center" ol-defaults="defaults" height="400" width="800" class="col-md-8">
-        <ol-marker ng-repeat="szkola in displayedSzkoly" 
-                   lat="szkola.lat"
-                   lon="szkola.lon"
-                   show=false
-                   message="{{szkola.tytul}}"></ol-marker>
-    </openlayers>
+    <div class="col-md-8" class="center-block">
+        <!-- Mapa -->
+        <openlayers ol-center="center" ol-defaults="defaults" ol-controls="controls" height="400" width="100%">
+            <ol-marker ng-repeat="szkola in olSzkoly" 
+                       lat="szkola.lat"
+                       lon="szkola.lon"
+                       show=false
+                       message="{{szkola.tytul}}"
+                       ></ol-marker>
+            <!--        <ol-layer source-type="TileJSON" source-url="https://api.tiles.mapbox.com/v3/examples.map-i86nkdio.jsonp"></ol-layer>-->
+            <ol-control name="{{ control.name}}" ng-repeat="control in controls|filter: {active: true}"></ol-control>
+            <ol-layer name="{{ layer.name}}" ol-layer-properties="layer" ng-repeat="layer in layers|filter: { active: true}"></ol-layer>
+        </openlayers>
+        <label>Wybór warstwy: </label>
+        <ul>
+            <li style="display: inline" ng-repeat="layer in layers">
+                <button ng-click="changeLayer(layer)" class="btn btn-default" ng-bind="layer.name"></button>
+            </li>
+        </ul>
+    </div>
 </div>
 
 <div id="output"></div>
@@ -40,7 +52,7 @@
                 <th>Akcje</th>
             </tr>
             <tr>
-                <th colspan="5"><input st-search="" class="form-control" placeholder="Wyszukaj..." type="text"/></th>
+                <th colspan="5"><input st-search="" class="form-control" placeholder="Wyszukaj..." type="text" /></th>
             </tr>
         </thead>
         <tbody>
@@ -55,11 +67,9 @@
                     <p>{{szkola.tytul}}</p>
                 </td>
                 <td>
-                    <a href="#/?c={{szkola.lat}}:{{szkola.lon}}:10">
-                        <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-search"> </span> Pokaż na mapie
-                        </button>
-                    </a>
+                    <button type="button" class="btn btn-default" ng-click="setCenter(szkola)"> 
+                        <span class="glyphicon glyphicon-search"> </span> Pokaż na mapie
+                    </button>
                     <button type="button" class="btn btn-primary" ng-click="edit(szkola)">
                         <span class="glyphicon glyphicon-pencil"> </span> Edytuj
                     </button>
@@ -88,15 +98,15 @@
                         <label for="tinymce-content">Opis</label>
                         <div class="form-control" id="tinymce-content" ui-tinymce="tinymceOptions" ng-model="selectedSzkola.description"></div>
                     </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">
-                            <span class="glyphicon"> </span> Anuluj
-                        </button>
-                        <button type="button" class="btn btn-primary" ng-click="save()">
-                            <span class="glyphicon glyphicon-pencil"> </span> Zapisz zmiany
-                        </button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        <span class="glyphicon"> </span> Anuluj
+                    </button>
+                    <button type="button" class="btn btn-primary" ng-click="save()">
+                        <span class="glyphicon glyphicon-pencil"> </span> Zapisz zmiany
+                    </button>
+                </div>
             </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

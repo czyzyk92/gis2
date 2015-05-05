@@ -19,6 +19,7 @@ angular.module('gisApp')
                 });
             };
             $scope.getSzkoly();
+
             // Tablica z referencjami z której korzysta Smart Table
             $scope.displayedSzkoly = [].concat($scope.szkoly);
 
@@ -26,14 +27,51 @@ angular.module('gisApp')
                 center: {
                     lat: 54.34766,
                     lon: 18.64542,
-                    zoom: 10,
-                    centerUrlHash: true
+                    zoom: 10
                 },
-                szkoly: {},
+                controls: [
+//                    {name: 'LayerSwitcher', active: true},
+                    {name: 'zoom', active: true},
+                    {name: 'scaleline', active: true},
+                ],
                 defaults: {
                     events: {
                         map: ['singleclick', 'pointermove']
+                    },
+                    interactions: {
+                        mouseWheelZoom: true
                     }
+                },
+                layers: [
+                    {
+                        name: 'Zabudowa',
+                        active: true,
+                        source: {
+                            type: 'OSM'
+                        }
+                    },
+                    {
+                        name: 'Drogi',
+                        active: false,
+                        source: {
+                            type: 'OSM',
+                            url: 'http://{a-c}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png',
+                            attribution: 'All maps &copy; <a href="http://www.opencyclemap.org/">OpenCycleMap</a>'
+                        }
+                    },
+                    {
+                        name: 'Teren',
+                        active: false,
+                        source: {
+                            type: 'TileJSON',
+                            url: 'https://api.tiles.mapbox.com/v3/examples.map-i86nkdio.jsonp'
+                        }
+                    }
+                ],
+                changeLayer: function(layer) {
+                    $scope.layers.map(function(l) {
+                        l.active = (l === layer);
+                    });
                 },
                 projection: 'EPSG:900913'
             });
@@ -50,6 +88,11 @@ angular.module('gisApp')
                 $scope.selectedSzkola = szkola;
                 console.log("Zaznaczona szkola:", $scope.selectedSzkola);
             };
+            $scope.setCenter = function (szkola) {
+                $scope.center.lat = szkola.lat;
+                $scope.center.lon = szkola.lon;
+            };
+
             $scope.edit = function (szkola) {
                 $scope.selectedSzkola = szkola;
                 $('#editModal').modal('show');
@@ -79,4 +122,9 @@ angular.module('gisApp')
                 });
 
             };
+
+            //Funkcja odpowiadająca za zmiany markerów na mapie zgodnie z wynikami wyszukiwania
+            $scope.$watch('displayedSzkoly', function () {
+                $scope.olSzkoly = angular.copy($scope.displayedSzkoly);
+            });
         });
