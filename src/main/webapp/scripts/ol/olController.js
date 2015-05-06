@@ -11,7 +11,6 @@ angular.module('gisApp')
                 ],
                 language: 'pl'
             };
-            $scope.selectedSzkola;
             $scope.getSzkoly = function () {
                 SzkolyService.getAll(function (result) {
                     $scope.szkoly = result;
