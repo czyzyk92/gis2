@@ -29,8 +29,16 @@ public class GeomResource {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     
-    public List<Geom> get() {
+    public List<Geom> getAll() {
         return geomRepository.findAll();
+    }
+    
+    @RequestMapping(value = "/geom/{id}",
+                    method = RequestMethod.GET,
+                    produces = MediaType.APPLICATION_JSON_VALUE)
+    public Geom get(@PathVariable Long id){
+        return geomRepository.findOne(id);
+                
     }
     
     @RequestMapping(value = "/geom",

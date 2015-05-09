@@ -11,7 +11,6 @@ angular.module('gisApp')
                 ],
                 language: 'pl'
             };
-            $scope.selectedSzkola;
             $scope.getSzkoly = function () {
                 SzkolyService.getAll(function (result) {
                     $scope.szkoly = result;
@@ -144,4 +143,11 @@ angular.module('gisApp')
                 
               });
             };
+            
+            $scope.selectSchool = function (szkola) {
+                if (szkola.selected == true)
+                    console.log("Zaznaczono szkołę:", szkola);
+                else 
+                    console.log("Odznaczono szkołę:", szkola);
+            }
         });
