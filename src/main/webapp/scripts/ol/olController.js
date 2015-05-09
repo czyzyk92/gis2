@@ -127,4 +127,21 @@ angular.module('gisApp')
             $scope.$watch('displayedSzkoly', function () {
                 $scope.olSzkoly = angular.copy($scope.displayedSzkoly);
             });
+            $scope.getSzkolyFromCity = function(city){
+                  if(city == 'Wszystkie'){
+                      $scope.displayedSzkoly = angular.copy($scope.szkoly);
+                      return;
+                  }
+                $scope.displayedSzkoly= [];
+                //for(var szkola in $scope.szkoly)
+                $scope.szkoly.forEach(function(szkola){
+                if(city == szkola.miejscowosc){
+                    $scope.displayedSzkoly.push(szkola);
+                   
+                    console.log(city);
+                    console.log("miejscowosc: "+szkola.miejscowosc);
+                  }
+                
+              });
+            };
         });

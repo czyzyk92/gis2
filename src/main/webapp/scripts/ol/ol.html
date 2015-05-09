@@ -8,7 +8,7 @@
     <div class="col-md-8" class="center-block">
         <!-- Mapa -->
         <openlayers ol-center="center" ol-defaults="defaults" ol-controls="controls" height="400" width="100%">
-            <ol-marker ng-repeat="szkola in olSzkoly" 
+            <ol-marker ng-repeat="szkola in olSzkoly"
                        lat="szkola.lat"
                        lon="szkola.lon"
                        show=false
@@ -21,9 +21,14 @@
         <label>Wybór warstwy: </label>
         <ul>
             <li style="display: inline" ng-repeat="layer in layers">
-                <button ng-click="changeLayer(layer)" class="btn btn-default" ng-bind="layer.name"></button>
+                <button ng-click="changeLayer(layer)"  class="btn btn-default" ng-bind="layer.name"></button>
             </li>
         </ul>
+        <label>Pokaż szkoły z: </label>
+        <button ng-click="getSzkolyFromCity('Gdynia')" class="btn btn-default">Gdyni</button>
+        <button ng-click="getSzkolyFromCity('Gdańsk')" class="btn btn-default">Gdańska</button>
+        <button ng-click="getSzkolyFromCity('Sopot')" class="btn btn-default">Sopotu</button>
+        <button ng-click="getSzkolyFromCity('Wszystkie')" class="btn btn-default">Wyszystkie</button>
     </div>
 </div>
 

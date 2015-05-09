@@ -38,7 +38,9 @@ public class Geom implements Serializable {
     
     @Column(name = "tytul")
     private String tytul;
-
+    
+    @Column(name = "miejscowosc")
+    private String miejscowosc;
     public Geom() {
     }
 
@@ -68,6 +70,14 @@ public class Geom implements Serializable {
 
     public void setLat(double lat) {
         this.lat = lat;
+    }
+
+    public String getMiejscowosc() {
+        return miejscowosc;
+    }
+
+    public void setMiejscowosc(String miejscowosc) {
+        this.miejscowosc = miejscowosc;
     }
 
     public String getDescription() {
