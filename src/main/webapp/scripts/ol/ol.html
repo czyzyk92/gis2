@@ -46,6 +46,7 @@
     <table class="table table-hover" st-table="displayedSzkoly" st-safe-src="szkoly">
         <thead>
             <tr>
+                <th>Zaznacz</th>
                 <th st-sort="lon">lon</th>
                 <th st-sort="lat">lat</th>
                 <th st-sort="tytul">Tytuł</th>
@@ -56,7 +57,10 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="szkola in displayedSzkoly" ng-click="selectSzkola(szkola)">
+            <tr ng-repeat="szkola in displayedSzkoly" ng-class="{'active': szkola.selected == true}">
+                <td>
+                    <input type="checkbox" ng-model="szkola.selected" value=true class="checkbox" ng-change="selectSchool(szkola)"/>
+                </td>
                 <td>
                     <p>{{szkola.lon}}</p>
                 </td>

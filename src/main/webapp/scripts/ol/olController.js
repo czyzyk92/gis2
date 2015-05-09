@@ -126,4 +126,11 @@ angular.module('gisApp')
             $scope.$watch('displayedSzkoly', function () {
                 $scope.olSzkoly = angular.copy($scope.displayedSzkoly);
             });
+            
+            $scope.selectSchool = function (szkola) {
+                if (szkola.selected == true)
+                    console.log("Zaznaczono szkołę:", szkola);
+                else 
+                    console.log("Odznaczono szkołę:", szkola);
+            }
         });
