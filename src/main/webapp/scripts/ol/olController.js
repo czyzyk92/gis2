@@ -132,13 +132,10 @@ angular.module('gisApp')
                       return;
                   }
                 $scope.displayedSzkoly= [];
-                //for(var szkola in $scope.szkoly)
                 $scope.szkoly.forEach(function(szkola){
                 if(city == szkola.miejscowosc){
                     $scope.displayedSzkoly.push(szkola);
-                   
-                    console.log(city);
-                    console.log("miejscowosc: "+szkola.miejscowosc);
+                  
                   }
                 
               });
