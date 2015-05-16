@@ -11,13 +11,38 @@ angular.module('gisApp')
                 ],
                 language: 'pl'
             };
+
+            $scope.normalIconStyle = {
+                image: {
+                    icon: {
+                        anchor: [0.5, 1],
+                        opacity: 1.0,
+                        src: '/img/normal.png'
+                    }
+                }
+            };
+            $scope.selectedIconStyle = {
+                image: {
+                    icon: {
+                        anchor: [0.5, 1],
+                        opacity: 1.0,
+                        src: '/img/selected.png'
+                    }
+                }
+            };
+
             $scope.getSzkoly = function () {
                 SzkolyService.getAll(function (result) {
                     $scope.szkoly = result;
+                    //Nadanie styli markerom
+                    angular.forEach($scope.szkoly, function (element) {
+                        element.style = $scope.normalIconStyle;
+                    });
                     console.log($scope.szkoly);
                 });
             };
             $scope.getSzkoly();
+            
 
             // Tablica z referencjami z której korzysta Smart Table
             $scope.displayedSzkoly = [].concat($scope.szkoly);
@@ -67,8 +92,8 @@ angular.module('gisApp')
                         }
                     }
                 ],
-                changeLayer: function(layer) {
-                    $scope.layers.map(function(l) {
+                changeLayer: function (layer) {
+                    $scope.layers.map(function (l) {
                         l.active = (l === layer);
                     });
                 },
@@ -126,25 +151,31 @@ angular.module('gisApp')
             $scope.$watch('displayedSzkoly', function () {
                 $scope.olSzkoly = angular.copy($scope.displayedSzkoly);
             });
-            $scope.getSzkolyFromCity = function(city){
-                  if(city == 'Wszystkie'){
-                      $scope.displayedSzkoly = angular.copy($scope.szkoly);
-                      return;
-                  }
-                $scope.displayedSzkoly= [];
-                $scope.szkoly.forEach(function(szkola){
-                if(city == szkola.miejscowosc){
-                    $scope.displayedSzkoly.push(szkola);
-                  
-                  }
-                
-              });
+            $scope.getSzkolyFromCity = function (city) {
+                if (city == 'Wszystkie') {
+                    $scope.displayedSzkoly = angular.copy($scope.szkoly);
+                    return;
+                }
+                $scope.displayedSzkoly = [];
+                $scope.szkoly.forEach(function (szkola) {
+                    if (city == szkola.miejscowosc) {
+                        $scope.displayedSzkoly.push(szkola);
+
+                    }
+
+                });
             };
-            
+
             $scope.selectSchool = function (szkola) {
-                if (szkola.selected == true)
+                if (szkola.selected == true) {
                     console.log("Zaznaczono szkołę:", szkola);
-                else 
+                    szkola.style = $scope.selectedIconStyle;
+                    $scope.olSzkoly = angular.copy($scope.displayedSzkoly);
+                }
+                else {
                     console.log("Odznaczono szkołę:", szkola);
-            }
+                    szkola.style = $scope.normalIconStyle;
+                    $scope.olSzkoly = angular.copy($scope.displayedSzkoly);
+                }
+            };
         });

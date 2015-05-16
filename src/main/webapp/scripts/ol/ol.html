@@ -18,8 +18,8 @@
                        lon="szkola.lon"
                        show=false
                        message="{{szkola.tytul}}"
+                       ol-style="szkola.style" 
                        ></ol-marker>
-            <!--        <ol-layer source-type="TileJSON" source-url="https://api.tiles.mapbox.com/v3/examples.map-i86nkdio.jsonp"></ol-layer>-->
             <ol-control name="{{ control.name}}" ng-repeat="control in controls|filter: {active: true}"></ol-control>
             <ol-layer name="{{ layer.name}}" ol-layer-properties="layer" ng-repeat="layer in layers|filter: { active: true}"></ol-layer>
         </openlayers>
@@ -47,7 +47,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="szkola in displayedSzkoly" ng-class="{'active': szkola.selected == true}">
+            <tr ng-repeat="szkola in displayedSzkoly" ng-class="{'info': szkola.selected == true}">
                 <td>
                     <input type="checkbox" ng-model="szkola.selected" value=true class="checkbox" ng-change="selectSchool(szkola)"/>
                 </td>
