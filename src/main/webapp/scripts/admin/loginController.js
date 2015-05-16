@@ -2,39 +2,14 @@
 
 angular.module('gisApp')
         .controller('loginController',
-                function ($rootScope, $scope, $http, $location) {
-
-                    var authenticate = function (credentials, callback) {
-
-                        var headers = credentials ? {authorization: "Basic "
-                                    + btoa(credentials.username + ":" + credentials.password)
-                        } : {};
-
-                        $http.get('user', {headers: headers}).success(function (data) {
-                            if (data.name) {
-                                $rootScope.authenticated = true;
-                            } else {
-                                $rootScope.authenticated = false;
-                            }
-                            callback && callback();
-                        }).error(function () {
-                            $rootScope.authenticated = false;
-                            callback && callback();
-                        });
-
-                    };
-
-                    authenticate();
-                    $scope.credentials = {};
-                    $scope.login = function () {
-                        authenticate($scope.credentials, function () {
-                            if ($rootScope.authenticated) {
-                                $location.path("/admin");
-                                $scope.error = false;
-                            } else {
-                                $location.path("/login");
-                                $scope.error = true;
-                            }
+                function ($scope, $state, AdminService, toastr) {
+                    $scope.userData = {};
+                    $scope.isCorrect = function () {
+                        AdminService.isCorrect($scope.userData, function () {
+                            toastr.success('Pomyślnie zalogowano!');
+                            $state.transitionTo('Admin');
+                        }, function () {
+                            toastr.error('Wystąpił błąd przy logowaniu');
                         });
                     };
                 });

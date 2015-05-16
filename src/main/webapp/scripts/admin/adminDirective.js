@@ -6,16 +6,16 @@ angular.module('gisApp')
             .state('Login', {
                 url: '/login',
                 templateUrl: "scripts/admin/login.html",
+                controller: 'loginController'
+            })
+            .state('Admin', {
+                url: '/admin',
+                templateUrl: "scripts/admin/admin.html",
                 controller: 'adminController'
             })
-                    .state('Admin', {
-                        url: '/admin',
-                        templateUrl: "scripts/admin/admin.html",
-                        controller: 'adminController'
-                    })
-                    .state('Edit', {
-                        url: '/admin/edit/:id/',
-                        templateUrl: "scripts/admin/edit.html",
-                        controller: 'editController'
-                    });
+            .state('Edit', {
+                url: '/admin/edit/:id/',
+                templateUrl: "scripts/admin/edit.html",
+                controller: 'editController'
+            });
         });

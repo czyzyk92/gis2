@@ -1,14 +1,14 @@
 <div class="alert alert-danger" ng-show="error">
 	Wystąpił błąd podczas logowania. Proszę spróbować ponowsnie.
 </div>
-<form class="login" role="form" ng-submit="login()">
+<form class="login" role="form" ng-submit="isCorrect()">
 	<div class="form-group">
             <label for="username">Login:</label> <input type="text"
-                class="form-control" id="username" name="username" ng-model="credentials.username"/>
+                class="form-control" id="username" name="username" ng-model="userData.login"/>
 	</div>
 	<div class="form-group">
             <label for="password">Hasło:</label> <input type="password"
-		class="form-control" id="password" name="password" ng-model="credentials.password"/>
+		class="form-control" id="password" name="password" ng-model="userData.haslo"/>
 	</div>
 	<button type="submit" class="btn btn-primary">Zaloguj się</button>
 </form>

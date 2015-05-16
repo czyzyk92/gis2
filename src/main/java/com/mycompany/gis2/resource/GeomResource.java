@@ -28,7 +28,6 @@ public class GeomResource {
     @RequestMapping(value = "/geom",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    
     public List<Geom> getAll() {
         return geomRepository.findAll();
     }
